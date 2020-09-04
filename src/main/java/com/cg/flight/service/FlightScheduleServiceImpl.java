@@ -1,5 +1,7 @@
 package com.cg.flight.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import com.cg.flight.entity.Flight;
 import com.cg.flight.entity.ScheduledFlight;
 import com.cg.flight.exceptions.AirportException;
 import com.cg.flight.exceptions.FlightException;
+import com.cg.flight.exceptions.ScheduledIdNotFoundException;
 import com.cg.flight.util.ScheduleConstants;
 
 @Service("myservice")
@@ -60,6 +63,19 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
 
 			return scheduledFlight.getScheduledFlightId();
 	
+	}
+
+	@Override
+	public String cancelFlightSchedule(String schFlightId) throws ScheduledIdNotFoundException {
+		if (schFlightId == null)
+			throw new ScheduledIdNotFoundException("Enter flight Id");
+		Optional<ScheduledFlight> scheduleFlight = scheduledflightDao.findById(schFlightId);
+		if (!scheduleFlight.isPresent())
+			throw new ScheduledIdNotFoundException(ScheduleConstants.SCH_ID_NOT_FOUND);
+		else {
+		    scheduledflightDao.deleteById(schFlightId);
+		}
+		return "Schedule Cancelled Successfully and the Schedule Id is " + schFlightId;
 	}
 
 	
