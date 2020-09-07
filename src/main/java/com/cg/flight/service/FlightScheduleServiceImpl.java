@@ -41,7 +41,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
 			scheduledflight.setAvailableSeats(schedule.getAvailableSeats());
 			scheduledflight.setArrivalTime(schedule.getArrivalTime());
 			scheduledflight.setMinutes(schedule.getMinutes());
-			scheduledflight.setDepartureTime(schedule.getDepartureTime());
+			scheduledflight.setDepartureTime(schedule.getArrivalTime().plusMinutes(schedule.getMinutes()));
 			scheduledflight.setScheduleStatus(schedule.getScheduleStatus());
 			scheduledflight.setFare(schedule.getFare());
 			Airport srcairport = null;

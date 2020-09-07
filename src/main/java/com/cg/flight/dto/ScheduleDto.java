@@ -24,6 +24,22 @@ public class ScheduleDto {
 	public Integer getAvailableSeats() {
 		return availableSeats;
 	}
+	public ScheduleDto() {
+		super();
+	}
+	public ScheduleDto(Integer availableSeats, LocalDateTime arrivalTime, int minutes,
+			String scheduleStatus, double fare, String srcAirport, String dstAirport, String flightId) {
+		super();
+		this.availableSeats = availableSeats;
+		this.arrivalTime = arrivalTime;
+		this.minutes = minutes;
+		this.departureTime = departureTime;
+		this.scheduleStatus = scheduleStatus;
+		this.fare = fare;
+		this.srcAirport = srcAirport;
+		this.dstAirport = dstAirport;
+		this.flightId = flightId;
+	}
 	public void setAvailableSeats(Integer availableSeats) {
 		this.availableSeats = availableSeats;
 	}
